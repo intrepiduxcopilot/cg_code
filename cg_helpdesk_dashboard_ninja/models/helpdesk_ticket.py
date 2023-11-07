@@ -32,11 +32,11 @@ class CustomHelpdeskTicket(models.Model):
 
 
     #control de calidad etapa  y cobro 2 
-    calidad_tiempo_respuesta = fields.Selection([(int(i), int(i)) for i in range(1, 11)], string='Tiempo de Resp del Servicio',default="1")
-    calidad_funcionamiento = fields.Selection([(int(i), int(i)) for i in range(1, 11)], string='Funcionamiento del servicio',default="1")
-    calidad_actitud_aptitud = fields.Selection([(int(i), int(i)) for i in range(1, 11)], string='Actitud/aptitud del técnico',default="1")
-    calidad_expectativas = fields.Selection([(int(i), int(i)) for i in range(1, 11)], string='Expectativas del servicio',default="1")
-    calidad_satisfaccion_precios = fields.Selection([(int(i), int(i)) for i in range(1, 11)], string='Satisfacción en precios ofrecidos',default="1")
+    calidad_tiempo_respuesta = fields.Selection([(str(i), str(i)) for i in range(1, 11)], string='Tiempo de Resp del Servicio',default="1")
+    calidad_funcionamiento = fields.Selection([(str(i), str(i)) for i in range(1, 11)], string='Funcionamiento del servicio',default="1")
+    calidad_actitud_aptitud = fields.Selection([(str(i), str(i)) for i in range(1, 11)], string='Actitud/aptitud del técnico',default="1")
+    calidad_expectativas = fields.Selection([(str(i), str(i)) for i in range(1, 11)], string='Expectativas del servicio',default="1")
+    calidad_satisfaccion_precios = fields.Selection([(str(i), str(i)) for i in range(1, 11)], string='Satisfacción en precios ofrecidos',default="1")
     fecha_autorizacion_cobros = fields.Date(string='Fecha para Autorización de Cobros', default=date.today() + timedelta(days=1))
     avg_etapa2 = fields.Float(string='Promedio Etapa 2', compute='_compute_avg_etapa2')
 
@@ -98,9 +98,9 @@ class CustomHelpdeskTicket(models.Model):
     #  que se desean obtener es parte de la contabilidad de costos/analitico
 
     #etapa 4 
-    calidad_servicio = fields.Selection([(int(i), int(i)) for i in range(1, 11)], string='Dentro de un rango del 1 al 10,ud entiende que se manejó la empresa con respecto a la calidad del servicio?', default='1')
-    presupuesto_precio = fields.Selection([(int(i), int(i)) for i in range(1, 11)], string='Que le pareció el Presupuesto y/o Precios?',default='1')
-    gestion_cobro = fields.Selection([(int(i), int(i)) for i in range(1, 11)], string='Que le pareció la Gestión de Cobros',default='1')
+    calidad_servicio = fields.Selection([(str(i), str(i)) for i in range(1, 11)], string='Dentro de un rango del 1 al 10,ud entiende que se manejó la empresa con respecto a la calidad del servicio?', default='1')
+    presupuesto_precio = fields.Selection([(str(i), str(i)) for i in range(1, 11)], string='Que le pareció el Presupuesto y/o Precios?',default='1')
+    gestion_cobro = fields.Selection([(str(i), str(i)) for i in range(1, 11)], string='Que le pareció la Gestión de Cobros',default='1')
     avg_etapa3 = fields.Float(string='Promedio Etapa 3', compute='_compute_avg_etapa3')
     
     @api.depends('calidad_servicio', 'presupuesto_precio', 'gestion_cobro')
