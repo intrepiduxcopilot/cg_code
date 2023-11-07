@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cg_helpdesk" model="ks_dashboard_ninja.board_template">
+            <field name="name">HELPDESK</field>
+            <field name="ks_gridstack_config">[
+                {"item_id":"cg_helpdesk_dashboard_ninja.cg_helpdesk_item_1", "data": {"x": 2, "y": 4, "w": 2, "h": 2}}
+            ]</field>
+
+
+            <field name="ks_item_count">17</field>
+        </record>
+
+
+
+<record id="cg_helpdesk_item_1" model="ks_dashboard_ninja.item">
+    <field name="name">My Helpdesk Tickets</field>
+    <field name="ks_dashboard_item_type">ks_tile</field>
+    <field name="ks_record_count_type">count</field>
+    <field name="ks_model_id" eval="ref('sh_all_in_one_helpdesk.model_helpdesk_ticket')"/>
+    <field name="ks_domain">[["user_id","=","%UID"]]</field>
+    <field name="ks_date_filter_field" eval="ref('sh_all_in_one_helpdesk.field_helpdesk_ticket__create_date')"/>
+    <field name="ks_default_icon">ticket</field>
+    <field name="ks_dashboard_item_theme">yellow</field>
+    <field name="ks_background_color">#f0ad4e,0.99</field>
+    <field name="ks_font_color">#ffffff,0.99</field>
+    <field name="ks_default_icon_color">#ffffff,0.99</field>
+    <field name="ks_layout">layout3</field>
+    <field name="ks_company_id" eval="0"/>
+</record>
+
+<record id="cg_helpdesk_item_13" model="ks_dashboard_ninja.item">
+    <field name="name">Total Tickets</field>
+    <field name="ks_dashboard_item_type">ks_tile</field>
+    <field name="ks_record_count_type">sum</field>
+    <field name="ks_model_id" eval="ref('sh_all_in_one_helpdesk.model_helpdesk_ticket')"/>
+    <field name="ks_domain">[["type","=","opportunity"],["stage_id.is_won","=",True]]</field>
+    <field name="ks_record_field" eval="ref('crm.field_crm_lead__expected_revenue')"/>
+    <field name="ks_date_filter_field" eval="ref('crm.field_crm_lead__create_date')"/>
+    <field name="ks_default_icon">money</field>
+    <field name="ks_dashboard_item_theme">green</field>
+    <field name="ks_background_color">#5cb85c,0.99</field>
+    <field name="ks_font_color">#5cb85c,0.99</field>
+    <field name="ks_default_icon_color">#ffffff,0.99</field>
+    <field name="ks_layout">layout4</field>
+    <field name="ks_company_id" eval="0"/>
+</record>
+
+
+
+
+
+
+                <!-- Single CRM Demo Dashboard Templates-->
+
+
+        <record id="demo_helpdesk_dashboard" model="ks_dashboard_ninja.board">
+            <field name="name">HELPDESK Dashboard</field>
+            <field name="ks_dashboard_menu_name">HELPDESK Dashboard</field>
+            <field name="ks_dashboard_top_menu_id" eval="ref('sh_all_in_one_helpdesk.helpdesk_main_menu')"/>
+            <field name="ks_dashboard_default_template" eval="ref('cg_helpdesk_dashboard_ninja.cg_helpdesk')"/>
+            <field name="ks_dashboard_active">1</field>
+            <field name="ks_dashboard_group_access" eval="False"/>
+            <field name="ks_dashboard_menu_sequence" eval="1"/>
+            
+        </record>
+
+
+    </data>
+
+</odoo>

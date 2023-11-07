@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_helpdesk_tickets_po_inherited_view_form_cg" model="ir.ui.view">
+        <field name="name">sh.helpdesk.tickets.po.view.form.cg</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="sh_all_in_one_helpdesk.sh_helpdesk_tickets_po_inherited_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_create_purchase_order']" position="replace">
+                <button class="btn btn-primary" invisible="1" name="action_create_purchase_order" type="object" string="Create Ticket" groups="sh_all_in_one_helpdesk.sh_helpdesk_ticket_po" />
+            </xpath>
+            <!-- Add other modifications if needed -->
+        </field>
+    </record>
+    
+    <!-- Include other records if needed -->
+
+</odoo>

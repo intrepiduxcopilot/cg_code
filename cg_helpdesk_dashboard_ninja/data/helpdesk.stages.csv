@@ -1,0 +1,7 @@
+id,sequence,name,sh_next_stage/id
+sh_all_in_one_helpdesk.new_stage,1,Nuevo,sh_all_in_one_helpdesk.in_progress_stage
+sh_all_in_one_helpdesk.in_progress_stage,2,1 - Ejecucion,sh_all_in_one_helpdesk.done_stage
+sh_all_in_one_helpdesk.done_stage,3,2 - Cierre Operativo y Certificacion de Calidad,sh_all_in_one_helpdesk.close_stage
+sh_all_in_one_helpdesk.close_stage,4,3 - Facturacion y Cobros,
+sh_all_in_one_helpdesk.cancel_stage,5,Cancelado,
+sh_all_in_one_helpdesk.reopen_stage,6,Reabierto,sh_all_in_one_helpdesk.in_progress_stage

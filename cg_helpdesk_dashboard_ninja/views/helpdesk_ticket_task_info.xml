@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+<record id="view_helpdesk_ticket_inherit" model="ir.ui.view">
+    <field name="name">helpdesk.ticket.form.extend</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="sh_all_in_one_helpdesk.helpdesk_ticket_form_view" />
+    <field name="arch" type="xml">
+        <data>
+
+        
+ 
+            <xpath expr="//field[@name='partner_id']" position="replace">             
+            
+                <!-- <field name="partner_id" string="Cliente" visible="True" /> -->
+            </xpath> 
+
+            <xpath expr="//field[@name='person_name']" position="replace">
+               <!-- al parecer es un campo computado  -->
+                <field name="person_name" invisible="True" />
+            </xpath>
+
+            <!-- revisar origen sh_lead_ids -->
+            <xpath expr="//field[@name='sh_lead_ids']" position="replace">
+                <field name="sh_lead_ids" invisible="True" />
+            </xpath>
+            <!-- revisar origen sh_purchase_order_ids -->
+            <xpath expr="//field[@name='sh_purchase_order_ids']" position="replace">
+                <field name="sh_purchase_order_ids" invisible="True" />
+            </xpath>
+
+            <!-- revisar origen sh_sale_order_ids -->
+            <xpath expr="//field[@name='sh_sale_order_ids']" position="replace">
+                <field name="sh_sale_order_ids" invisible="True" />
+            </xpath>
+
+
+            <xpath expr="//field[@name='ticket_type']" position="replace">
+                <field name="ticket_type" string="Tipo de ticket" />
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="replace">
+       
+                <field name="company_id" groups="base.group_multi_company" readonly="1" invisible="True"/>                
+            </xpath>   
+
+            
+
+
+            
+                     
+
+            <xpath expr="//field[@name='company_id']" position="replace">
+
+                <field name="company_id" invisible="True" />
+                <field name="partner_id" string="Cliente" />
+                <field name="b2c_b2b" required="True" />
+                <field name="category_id" string="Tipo de servicio" required="True" attrs="{'invisible':[('category_bool','=',False)]}"/>
+                <!-- pendiente habilitar en la configuracion  LA CATEGORIA por defecto -->
+            </xpath>            
+            <xpath expr="//notebook//page[1]" position="inside">
+                <!-- <group string="Quality Check"> -->
+
+                <!-- etapa 1   1 - Ejecucion    -->
+                <!-- etapa 2   2 - Cierre Operativo y Certificación de Calidad -->
+                <field name='etapa1' invisible='True' />
+
+                <group string="Etapa 1: Operaciones - Ejecucion del servicio" attrs="{'invisible': [('etapa1','not in',('2','1','0'))]}">
+                    <field name='status_selection' /> 
+                    <!-- 
+                        ('a', 'Por Cotizar'),
+                        ('b', 'Cotizados'),
+                        ('c', 'Por Aprob'),
+                        ('d', 'Desestimado'),
+
+
+                     -->
+                    <!-- poner condiciones en base a este campo para poder cambiar de etapa -->
+
+
+                </group>
+
+                <group string="Etapa 2: Cierre Operativo y Certificación de Calidad"  attrs="{'invisible': [('etapa1','!=','3')]}">
+                    <field name="calidad_tiempo_respuesta" widget='radio' options="{'horizontal': true}" /> 
+                    <!-- revisar widget="numeric_step"  para una mejor UI probablemente sea por el tipo de dato que debe ser numerico-->
+                    <field name="calidad_funcionamiento" widget='radio' options="{'horizontal': true}" />
+                    <field name="calidad_actitud_aptitud" widget='radio' options="{'horizontal': true}" />
+                    <field name="calidad_expectativas" widget='radio' options="{'horizontal': true}" />
+                    <field name="calidad_satisfaccion_precios" widget='radio' options="{'horizontal': true}" />
+                    
+                    <!-- <field name="avg_etapa2" widget="percentage_pie"/> -->
+                    <field name="avg_etapa2" widget="progressbar" options="{'current_value':'avg_etapa2', 'max_value': 100}"  />
+                    
+
+                    
+                    
+                    <field name="fecha_autorizacion_cobros" />
+                    <field name="metodo_pago" />
+                </group>
+                <group string="Etapa 4: Control de Calidad y Referidos" attrs="{'invisible': [('etapa1','!=','4')]}">  
+
+                    <field name="calidad_servicio" widget='radio' options="{'horizontal': true}" />
+                    <field name="presupuesto_precio" widget='radio' options="{'horizontal': true}" />
+                    <field name="servicio_sugerencia" widget='text' />
+                    <field name="avg_etapa3" widget="progressbar" options="{'current_value':'avg_etapa3', 'max_value': 100}"  />
+                    <field name="referencias" />
+                    
+
+                </group>
+
+
+
+<!-- habilitar por defaults PENDIENTE
+
+- Alarma de boletos de servicio de ayuda
+- HelpDesk WhatsApp Función
+- Boleto de servicio de venta de venta
+- Ticket de servicio de ayuda de factura
+- Actualización de boletos masivos
+
+ -->
+
+
+
+            </xpath>
+
+
+
+        </data>
+    </field>
+</record>
+
+
+</odoo>

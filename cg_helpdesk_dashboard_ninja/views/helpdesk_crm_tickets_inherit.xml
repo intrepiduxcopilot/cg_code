@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_helpdesk_tickets_crm_inherited_view_form_cg" model="ir.ui.view">
+        <field name="name">sh.helpdesk.tickets.crm.view.form.cg</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="sh_all_in_one_helpdesk.sh_helpdesk_tickets_crm_inherited_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_create_lead']" position="replace">
+                <button class="btn btn-primary" invisible='True' name="action_create_lead" icon="fa-star" type="object" string="Create Lead" groups="sh_all_in_one_helpdesk.sh_helpdesk_ticket_crm" />
+            </xpath>
+            <xpath expr="//button[@name='action_create_opportunity']" position="replace">
+                <button class="btn btn-primary" invisible='True' name="action_create_opportunity" icon="fa-star" type="object" string="Create Opportunity" groups="sh_all_in_one_helpdesk.sh_helpdesk_ticket_crm" />
+            </xpath>
+                    <!-- Add other modifications if needed -->
+        </field>
+    </record>
+    
+    <!-- Include other records if needed -->
+
+</odoo>
